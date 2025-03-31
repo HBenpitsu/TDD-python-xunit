@@ -16,7 +16,8 @@
 # 取り組み中
 
 - [ ] テスト結果を収集して結果を出力する
-    - [ ] TestCase.runがTestResultを返すようにする
+    - [x] TestCase.runがTestResultを返すようにする
+    - [ ] FailureCountを実装する
 
 ## 書籍位置
 

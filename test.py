@@ -27,6 +27,11 @@ class TestCaseTest(xunit.TestCase):
         resultTest = HaveResult("testMethod")
         result = resultTest.run()
         assert result.summary() == "1 run, 0 failed"
+    def testFailedResult(test):
+        resultTest = HaveResult("testBrokenMethod")
+        result = resultTest.run()
+        assert result.summary() == "1 run, 1 failed"
 
 TestCaseTest("testRunning").run()
 TestCaseTest("testResult").run()
+TestCaseTest("testFailedResult").run()
