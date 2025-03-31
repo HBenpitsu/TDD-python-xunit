@@ -13,6 +13,15 @@ class TestCaseSample(xunit.TestCase):
     def testBrokenMethod(self):
         raise Exception("Broken Method")
 
+class TestSuiteSample(xunit.TestSuite):
+    def __init__(self):
+        super().__init__()
+        self.log = ""
+    def setUp(self):
+        self.log += "setUp "
+    def tearDown(self):
+        self.log += "tearDown "
+
 class TestCaseTest(xunit.TestCase):
     def testRunning(self):
         wasRunTest = TestCaseSample("testMethod")
