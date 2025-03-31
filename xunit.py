@@ -6,10 +6,12 @@ class TestCase:
         targetMethod()
     def testMethod(self):
         self.wasSetUp = True
+        self.wasRun = True
 
 class WasRun(TestCase):
     def __init__(self, name):
         super().__init__(name)
         self.wasRun = False
     def testMethod(self):
+        self.wasSetUp = True
         self.wasRun = True
