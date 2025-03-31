@@ -25,6 +25,16 @@ class TestSuiteSample(xunit.TestSuite):
     def tearDown(self):
         self.log += "tearDown "
 
+class SetUpFailureTestCaseSample(xunit.TestCase):
+    def setUp(self):
+        raise Exception("setUp Failure")
+    def testMethod(self):
+        pass
+
+class SetUpFailureTestSuiteSample(xunit.TestSuite):
+    def setUp(self):
+        raise Exception("setUp Failure")
+
 class TestCaseTest(xunit.TestCase):
     def testRunning(self):
         wasRunTest = TestCaseSample("testMethod")
@@ -104,7 +114,13 @@ class TestSuiteTest(xunit.TestCase):
             raise AssertionError("TypeCheck did not work")
         except TypeError:
             pass
-
+    def testSetUpFailure(self):
+        suite = SetUpFailureTestSuiteSample()
+        try:
+            suite.run()
+            raise AssertionError("setUpFailureTest did not raise exception")
+        except Exception:
+            pass
 class PythonSpecificationTest(xunit.TestCase):
     pass
 
