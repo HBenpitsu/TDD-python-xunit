@@ -8,10 +8,10 @@ class TestCaseSample(xunit.TestCase):
         self.log += "setUp "
     def testMethod(self):
         self.log += "testMethod "
-    def tearDown(self):
-        self.log += "tearDown "
     def testBrokenMethod(self):
         raise Exception("Broken Method")
+    def tearDown(self):
+        self.log += "tearDown "
 
 class TestSuiteSample(xunit.TestSuite):
     def __init__(self):
@@ -36,6 +36,10 @@ class TestCaseTest(xunit.TestCase):
         resultTest = TestCaseSample("testBrokenMethod")
         result = resultTest.run()
         assert result.summary() == "1 run, 1 failed"
+    def testDynamicTestExecution():
+        dynamicTests = TestCaseSample()
+        dynamicTests.run()
+        assert result.summary() == "2 run, 1 failed"
 
 class TestResultTest(xunit.TestCase):
     def testSummary(self):
@@ -75,6 +79,7 @@ tests = [
     TestSuiteTest("testHoldsTests"),
     TestSuiteTest("testRunsTests"),
     TestSuiteTest("testRunning"),
+    TestCaseTest("testDynamicTestExecution"),
 ]
 for test in tests:
     suite.add(test)
