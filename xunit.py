@@ -9,14 +9,25 @@ class TestResult:
     def summary(self):
         return f"{self.runCount} run, {self.failureCount} failed"
 
-class TestCase:
+class TestSuite:
+    def __init__(self):
+        self.tests: list[TestSuite] = []
+    def add(self, test):
+        self.tests.append(test)
+    def run(self, result=None):
+        testsResult = TestResult() if result is None else result
+        for test in self.tests:
+            test.run(testsResult)
+        return testsResult
+            
+class TestCase(TestSuite):
     def __init__(self, name):
         self.name = name
     def setUp(self):
         pass
-    def run(self):
+    def run(self, result=None):
         targetMethod = getattr(self, self.name)
-        result = TestResult()
+        result = TestResult() if result is None else result
         self.setUp()
         result.testStarted()
         try:
@@ -27,17 +38,3 @@ class TestCase:
         return result
     def tearDown(self):
         pass
-
-class TestSuite:
-    def __init__(self):
-        self.tests = []
-    def add(self, test):
-        self.tests.append(test)
-    def run(self):
-        testsResult = TestResult()
-        for test in self.tests:
-            testResult = test.run()
-            testsResult.runCount += testResult.runCount
-            testsResult.failureCount += testResult.failureCount
-        return testsResult
-            
