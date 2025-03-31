@@ -35,7 +35,13 @@ class TestResultTest(xunit.TestCase):
         result.testFailed()
         assert result.summary() == "1 run, 1 failed"
 
-TestCaseTest("testRunning").run()
-TestCaseTest("testResult").run()
-TestResultTest("testSummary").run()
-TestCaseTest("testFailedResult").run()
+
+tests = [
+    TestCaseTest("testRunning").run(),
+    TestCaseTest("testResult").run(),
+    TestResultTest("testSummary").run(),
+    TestCaseTest("testFailedResult").run(),
+]
+
+for test in tests:
+    print(test.summary())
