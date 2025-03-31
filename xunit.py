@@ -12,6 +12,7 @@ class WasRun(TestCase):
     def __init__(self, name):
         super().__init__(name)
         self.wasRun = False
+        self.wasSetUp = False
     def setUp(self):
         self.wasSetUp = True
     def testMethod(self):
