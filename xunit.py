@@ -38,6 +38,8 @@ class TestSuite(TestCase):
     def add(self, test: TestCase):
         self.tests.append(test)
     def addAllOf(self, testCaseClass: type[TestCase]):
+        if not issubclass(testCaseClass, TestCase):
+            raise TypeError("testCaseClass must be a subclass of TestCase")
         methodNames = testCaseClass.__dict__.keys()
         for methodName in methodNames:
             if methodName.startswith("test"):
