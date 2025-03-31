@@ -11,6 +11,11 @@ class TestCaseTest(xunit.TestCase):
         assert self.wasRunTest.wasSetUp == False
         self.wasRunTest.run()
         assert self.wasRunTest.wasSetUp == True
+    def testWasTearedDown(self):
+        assert self.wasRunTest.wasTearedDown == False
+        self.wasRunTest.run()
+        assert self.wasRunTest.wasTearedDown == True
 
 TestCaseTest("testRunning").run()
 TestCaseTest("testWasSetUp").run()
+TestCaseTest("testWasTearedDown").run()
