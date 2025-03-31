@@ -1,4 +1,10 @@
+class WasRun:
+    def __init__(self, name):
+        self.wasRun = False
+    def testMethod(self):
+        pass
+
 test = WasRun("testMethod")
-print(test.WasRun)
+print(test.wasRun)
 test.testMethod()
-print(test.WasRun)
+print(test.wasRun)
