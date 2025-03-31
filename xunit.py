@@ -5,7 +5,7 @@ class TestCase:
         targetMethod = getattr(self, self.name)
         targetMethod()
     def testMethod(self):
-        pass
+        self.testWasSetUp = True
 
 class WasRun(TestCase):
     def __init__(self, name):
