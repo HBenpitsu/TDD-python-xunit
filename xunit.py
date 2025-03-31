@@ -27,3 +27,9 @@ class TestCase:
         return result
     def tearDown(self):
         pass
+
+class TestSuite:
+    def __init__(self):
+        self.tests = []
+    def add(self, test):
+        self.tests.append(test)
