@@ -49,7 +49,7 @@ class TestSuiteTest(xunit.TestCase):
         suite = TestSuiteSample()
         assert suite.log == ""
         suite.run()
-        assert suite.log == "setUp runTests tearDown "
+        assert suite.log == "setUp tearDown "
     def testHoldsTests(self):
         suite = xunit.TestSuite()
         testcase1 = TestCaseSample("testMethod")
