@@ -1,19 +1,21 @@
 from abc import abstractmethod
+import traceback
 
 class TestResult:
     def __init__(self):
         self.runCount = 0
         self.failureCount = 0
+        self.exceptionBuffer = ""
     def testStarted(self):
         self.runCount += 1
-    def testFailed(self):
+    def testFailed(self, e: Exception):
         self.failureCount += 1
+        self.exceptionBuffer += "\n".join(traceback.format_exception(e)) + "\n"
     def summary(self):
         return f"{self.runCount} run, {self.failureCount} failed"
     def detail(self):
         return (
-            f"{self.runCount} run, {self.failureCount} failed\n"
-            + "Exception: Test failed\n" if self.failureCount else ""
+            f"{self.runCount} run, {self.failureCount} failed\n {self.exceptionBuffer}"
         )
 
 class TestCase:
@@ -29,8 +31,8 @@ class TestCase:
         result.testStarted()
         try:
             targetMethod()
-        except:
-            result.testFailed()
+        except Exception as e:
+            result.testFailed(e)
         self.tearDown()
         return result
     @abstractmethod
