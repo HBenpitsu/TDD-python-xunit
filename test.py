@@ -36,18 +36,20 @@ class TestResultTest(xunit.TestCase):
         assert result.summary() == "1 run, 1 failed"
 
 class TestSuiteTest(xunit.TestCase):
-    def testHoldsTest(self):
+    def testHoldsTests(self):
         suite = xunit.TestSuite()
-        testcase = TestCaseSample("testMethod")
-        suite.add(testcase)
-        assert suite.tests == [testcase]
+        testcase1 = TestCaseSample("testMethod")
+        testcase2 = TestCaseSample("testMethod")
+        suite.add(testcase1)
+        suite.add(testcase2)
+        assert suite.tests == [testcase1, testcase2]
 
 tests = [
     TestCaseTest("testRunning").run(),
     TestCaseTest("testResult").run(),
     TestResultTest("testSummary").run(),
     TestCaseTest("testFailedResult").run(),
-    TestSuiteTest("testHoldsTest").run(),
+    TestSuiteTest("testHoldsTests").run(),
 ]
 
 for test in tests:
