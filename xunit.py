@@ -10,6 +10,11 @@ class TestResult:
         self.failureCount += 1
     def summary(self):
         return f"{self.runCount} run, {self.failureCount} failed"
+    def detail(self):
+        return (
+            f"{self.runCount} run, {self.failureCount} failed\n"
+            + "Exception: Test failed\n"
+        )
 
 class TestCase:
     def __init__(self, name):
