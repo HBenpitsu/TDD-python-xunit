@@ -1,6 +1,9 @@
 class TestResult:
+    def __init__(self):
+        self.runCount = 1
+        self.failureCount = 0
     def summary(self):
-        return "1 run, 0 failed"
+        return f"{self.runCount} run, {self.failureCount} failed"
 
 class TestCase:
     def __init__(self, name):
