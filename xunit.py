@@ -41,9 +41,11 @@ class TestSuite(TestCase):
     def setUp(self):
         pass
     def run(self, result=None):
+        self.setUp()
         testsResult = TestResult() if result is None else result
         for test in self.tests:
             test.run(testsResult)
+        self.tearDown()
         return testsResult
     @abstractmethod
     def tearDown(self):
