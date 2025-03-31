@@ -36,6 +36,8 @@ class TestSuite(TestCase):
     def __init__(self):
         self.tests: list[TestSuite] = []
     def add(self, test: TestCase):
+        if not isinstance(test, TestCase):
+            raise TypeError("test must be an instance of TestCase")
         self.tests.append(test)
     def addAllOf(self, testCaseClass: type[TestCase]):
         if not issubclass(testCaseClass, TestCase):
