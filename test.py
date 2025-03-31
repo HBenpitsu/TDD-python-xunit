@@ -39,6 +39,13 @@ class TestCaseTest(xunit.TestCase):
         resultTest = TestCaseSample("testBrokenMethod")
         result = resultTest.run()
         assert result.summary() == "1 run, 1 failed"
+    def testSetUpFailure(test):
+        setUpFailureTest = SetUpFailureTestCaseSample("testMethod")
+        try:
+            setUpFailureTest.run()
+            raise AssertionError("setUpFailureTest did not raise exception")
+        except Exception:
+            pass
 
 class TestResultTest(xunit.TestCase):
     def testSummary(self):
