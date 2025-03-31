@@ -11,13 +11,3 @@ class TestCase:
     def tearDown(self):
         pass
 
-class WasRun(TestCase):
-    def __init__(self, name):
-        super().__init__(name)
-        self.log = ""
-    def setUp(self):
-        self.log += "setUp "
-    def testMethod(self):
-        self.log += "testMethod "
-    def tearDown(self):
-        self.log += "tearDown "
