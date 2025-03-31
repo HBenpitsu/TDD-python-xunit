@@ -27,4 +27,3 @@ class TestCase:
         return result
     def tearDown(self):
         pass
-

@@ -35,12 +35,19 @@ class TestResultTest(xunit.TestCase):
         result.testFailed()
         assert result.summary() == "1 run, 1 failed"
 
+class TestSuiteTest(xunit.TestCase):
+    def holdsTest(self):
+        suite = xunit.TestSuite()
+        testcase = TestCaseSample("testMethod")
+        suite.add(testcase)
+        assert suite.tests == [testcase]
 
 tests = [
     TestCaseTest("testRunning").run(),
     TestCaseTest("testResult").run(),
     TestResultTest("testSummary").run(),
     TestCaseTest("testFailedResult").run(),
+    TestSuiteTest("holdsTest").run(),
 ]
 
 for test in tests:
