@@ -33,3 +33,11 @@ class TestSuite:
         self.tests = []
     def add(self, test):
         self.tests.append(test)
+    def run(self):
+        testsResult = TestResult()
+        for test in self.tests:
+            testResult = test.run()
+            testsResult.runCount += testResult.runCount
+            testsResult.failureCount += testResult.failureCount
+        return testsResult
+            
