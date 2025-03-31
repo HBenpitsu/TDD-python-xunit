@@ -121,6 +121,20 @@ class TestSuiteTest(xunit.TestCase):
             raise AssertionError("setUpFailureTest did not raise exception")
         except Exception:
             pass
+    def testAddTestSuite(self):
+        child = xunit.TestSuite()
+        parent = xunit.TestSuite()
+        parent.add(child)
+        assert child in parent.tests
+    def testRecursiveRun(self):
+        testcase = TestCaseSample("testMethod")
+        child = xunit.TestSuite()
+        child.add(testcase)
+        parent = xunit.TestSuite()
+        parent.add(child)
+        parent.add(testcase)
+        result = parent.run()
+        assert result.summary() == "2 run, 0 failed"
 class PythonSpecificationTest(xunit.TestCase):
     pass
 
