@@ -16,6 +16,8 @@ class HaveResult(xunit.TestCase):
         super().__init__(name)
     def testMethod(self):
         pass
+    def testBrokenMethod(self):
+        raise Exception("Broken Method")
 
 class TestCaseTest(xunit.TestCase):
     def testRunning(self):

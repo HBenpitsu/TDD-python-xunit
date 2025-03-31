@@ -4,6 +4,8 @@ class TestResult:
         self.failureCount = 0
     def testStarted(self):
         self.runCount += 1
+    def testFailed(self):
+        self.failureCount += 1
     def summary(self):
         return f"{self.runCount} run, {self.failureCount} failed"
 
@@ -17,7 +19,10 @@ class TestCase:
         result = TestResult()
         self.setUp()
         result.testStarted()
-        targetMethod()
+        try:
+            targetMethod()
+        except:
+            result.testFailed()
         self.tearDown()
         return result
     def tearDown(self):
