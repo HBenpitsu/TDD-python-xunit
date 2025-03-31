@@ -78,6 +78,12 @@ class TestSuiteTest(xunit.TestCase):
             raise AssertionError("TypeCheck did not work")
         except TypeError:
             pass
+    def testNotTestCaseExeption(self):
+        try:
+            suite.add(BareSampleClass())
+            raise AssertionError("TypeCheck did not work")
+        except AttributeError:
+            pass
 
 class PythonSpecificationTest(xunit.TestCase):
     pass
