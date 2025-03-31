@@ -20,6 +20,7 @@
         - [x] testを保持する
         - [x] testを複数保持する
         - [ ] testを実行する
+            - [ ] testSuiteのsetUp, tearDownを期待する
 
 ## 書籍位置
 
