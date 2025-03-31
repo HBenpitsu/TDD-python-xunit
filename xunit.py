@@ -11,8 +11,3 @@ class WasRun(TestCase):
         self.wasRun = False
     def testMethod(self):
         self.wasRun = True
-
-test = WasRun("testMethod")
-print(test.wasRun)
-test.run()
-print(test.wasRun)
