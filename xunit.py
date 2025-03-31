@@ -13,7 +13,7 @@ class TestResult:
     def detail(self):
         return (
             f"{self.runCount} run, {self.failureCount} failed\n"
-            + "Exception: Test failed\n"
+            + "Exception: Test failed\n" if self.failureCount else ""
         )
 
 class TestCase:
