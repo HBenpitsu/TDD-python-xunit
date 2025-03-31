@@ -1,8 +1,11 @@
 class TestCase:
     def __init__(self, name):
         self.name = name
+    def setUp(self):
+        pass
     def run(self):
         targetMethod = getattr(self, self.name)
+        self.setUp()
         targetMethod()
 
 class WasRun(TestCase):
@@ -12,5 +15,4 @@ class WasRun(TestCase):
     def setUp(self):
         self.wasSetUp = True
     def testMethod(self):
-        self.setUp()
         self.wasRun = True
