@@ -66,15 +66,17 @@ class TestSuiteTest(xunit.TestCase):
         result = suite.run()
         assert result.summary() == "2 run, 1 failed"
 
+suite = xunit.TestSuite()
 tests = [
-    TestCaseTest("testRunning").run(),
-    TestCaseTest("testResult").run(),
-    TestResultTest("testSummary").run(),
-    TestCaseTest("testFailedResult").run(),
-    TestSuiteTest("testHoldsTests").run(),
-    TestSuiteTest("testRunsTests").run(),
-    TestSuiteTest("testRunning").run(),
+    TestCaseTest("testRunning"),
+    TestCaseTest("testResult"),
+    TestResultTest("testSummary"),
+    TestCaseTest("testFailedResult"),
+    TestSuiteTest("testHoldsTests"),
+    TestSuiteTest("testRunsTests"),
+    TestSuiteTest("testRunning"),
 ]
-
 for test in tests:
-    print(test.summary())
+    suite.add(test)
+result = suite.run()
+print(result.summary())
