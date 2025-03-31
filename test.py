@@ -1,5 +1,8 @@
 import xunit
 
+class BareSampleClass:
+    pass
+
 class TestCaseSample(xunit.TestCase):
     def __init__(self, name):
         super().__init__(name)
@@ -69,6 +72,12 @@ class TestSuiteTest(xunit.TestCase):
         suite = xunit.TestSuite()
         suite.addAllOf(TestCaseSample)
         assert len(suite.tests) == 2
+    def testNotTestCaseClassExeption(self):
+        try:
+            suite.addAllOf(BareSampleClass)
+            raise AssertionError("TypeCheck did not work")
+        except TypeError:
+            pass
 
 class PythonSpecificationTest(xunit.TestCase):
     pass
