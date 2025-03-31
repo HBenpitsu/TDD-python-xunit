@@ -74,17 +74,9 @@ class PythonSpecificationTest(xunit.TestCase):
     pass
 
 suite = xunit.TestSuite()
-tests = [
-    TestCaseTest("testRunning"),
-    TestCaseTest("testResult"),
-    TestResultTest("testSummary"),
-    TestCaseTest("testFailedResult"),
-    TestSuiteTest("testHoldsTests"),
-    TestSuiteTest("testRunsTests"),
-    TestSuiteTest("testRunning"),
-    TestSuiteTest("testAddAllTestOfTestCase"),
-]
-for test in tests:
-    suite.add(test)
+suite.addAllOf(TestCaseTest)
+suite.addAllOf(TestResultTest)
+suite.addAllOf(TestSuiteTest)
+suite.addAllOf(PythonSpecificationTest)
 result = suite.run()
 print(result.summary())
