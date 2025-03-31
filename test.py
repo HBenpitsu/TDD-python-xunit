@@ -8,13 +8,13 @@ class TestCaseTest(xunit.TestCase):
         self.wasRunTest.run()
         assert self.wasRunTest.log == "setUp testMethod tearDown "
     def testWasSetUp(self):
-        assert self.wasRunTest.wasSetUp == ""
+        assert self.wasRunTest.log == ""
         self.wasRunTest.run()
-        assert self.wasRunTest.wasSetUp == "setUp testMethod tearDown "
+        assert self.wasRunTest.log == "setUp testMethod tearDown "
     def testWasTearedDown(self):
-        assert self.wasRunTest.wasTearedDown == ""
+        assert self.wasRunTest.log == ""
         self.wasRunTest.run()
-        assert self.wasRunTest.wasTearedDown == "setUp testMethod tearDown "
+        assert self.wasRunTest.log == "setUp testMethod tearDown "
 
 TestCaseTest("testRunning").run()
 TestCaseTest("testWasSetUp").run()

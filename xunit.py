@@ -14,12 +14,10 @@ class TestCase:
 class WasRun(TestCase):
     def __init__(self, name):
         super().__init__(name)
-        self.wasRun = False
-        self.wasSetUp = False
-        self.wasTearedDown = False
+        self.log = ""
     def setUp(self):
-        self.wasSetUp = True
+        self.log += "setUp "
     def testMethod(self):
-        self.wasRun = True
+        self.log += "testMethod "
     def tearDown(self):
-        self.wasTearedDown = True
+        self.log += "tearDown "
