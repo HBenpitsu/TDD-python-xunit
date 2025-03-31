@@ -70,6 +70,9 @@ class TestSuiteTest(xunit.TestCase):
         suite.addAllOf(TestCaseSample)
         assert len(suite.tests) == 2
 
+class PythonSpecificationTest(xunit.TestCase):
+    pass
+
 suite = xunit.TestSuite()
 tests = [
     TestCaseTest("testRunning"),

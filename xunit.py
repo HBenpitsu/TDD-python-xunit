@@ -35,12 +35,17 @@ class TestCase:
 class TestSuite(TestCase):
     def __init__(self):
         self.tests: list[TestSuite] = []
-    def add(self, test):
+    def add(self, test: TestCase):
         self.tests.append(test)
+    def addAllOf(self, testCaseClass: type[TestCase]):
+        methodNames = testCaseClass.__dict__.keys()
+        for methodName in methodNames:
+            if methodName.startswith("test"):
+                self.add(testCaseClass(methodName))
     @abstractmethod
     def setUp(self):
         pass
-    def run(self, result=None):
+    def run(self, result: None | TestResult =None):
         self.setUp()
         testsResult = TestResult() if result is None else result
         for test in self.tests:
