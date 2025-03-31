@@ -4,17 +4,17 @@ class TestCaseTest(xunit.TestCase):
     def setUp(self):
         self.wasRunTest = xunit.WasRun("testMethod")
     def testRunning(self):
-        assert self.wasRunTest.wasRun == False
+        assert self.wasRunTest.log == ""
         self.wasRunTest.run()
-        assert self.wasRunTest.wasRun == True
+        assert self.wasRunTest.log == "setUp testMethod tearDown "
     def testWasSetUp(self):
-        assert self.wasRunTest.wasSetUp == False
+        assert self.wasRunTest.wasSetUp == ""
         self.wasRunTest.run()
-        assert self.wasRunTest.wasSetUp == True
+        assert self.wasRunTest.wasSetUp == "setUp testMethod tearDown "
     def testWasTearedDown(self):
-        assert self.wasRunTest.wasTearedDown == False
+        assert self.wasRunTest.wasTearedDown == ""
         self.wasRunTest.run()
-        assert self.wasRunTest.wasTearedDown == True
+        assert self.wasRunTest.wasTearedDown == "setUp testMethod tearDown "
 
 TestCaseTest("testRunning").run()
 TestCaseTest("testWasSetUp").run()
