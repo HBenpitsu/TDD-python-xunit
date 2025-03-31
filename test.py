@@ -50,11 +50,15 @@ class TestResultTest(xunit.TestCase):
         suite = xunit.TestSuite()
         suite.addAllOf(TestCaseSample)
         result = suite.run()
-        assert "Exception: Broken Method" in result.detail()
+        assert result.summary() in result.detail()
+        assert "Traceback" in result.detail()
+        assert "Exception: Broken Method" in result.detail() 
     def testDetailReportsNoException(self):
         suite = xunit.TestSuite()
         suite.add(TestCaseSample("testMethod"))
         result = suite.run()
+        assert result.summary() in result.detail()
+        assert "Traceback" not in result.detail()
         assert "Exception" not in result.detail()
 class TestSuiteTest(xunit.TestCase):
     def testRunning(self):
