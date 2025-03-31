@@ -4,8 +4,8 @@ class TestCase:
 
 class WasRun(TestCase):
     def __init__(self, name):
+        super().__init__(name)
         self.wasRun = False
-        self.name = name
     def run(self):
         targetMethod = getattr(self, self.name)
         targetMethod()
