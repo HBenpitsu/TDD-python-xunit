@@ -6,7 +6,7 @@ class WasRun:
     def testMethod(self):
         self.wasRun = True
 
-test = WasRun("testMethod")
+test = WasRun("testMethodAlt")
 print(test.wasRun)
 test.run()
 print(test.wasRun)
