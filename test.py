@@ -36,10 +36,6 @@ class TestCaseTest(xunit.TestCase):
         resultTest = TestCaseSample("testBrokenMethod")
         result = resultTest.run()
         assert result.summary() == "1 run, 1 failed"
-    def testDynamicTestExecution():
-        dynamicTests = TestCaseSample()
-        dynamicTests.run()
-        assert result.summary() == "2 run, 1 failed"
 
 class TestResultTest(xunit.TestCase):
     def testSummary(self):
@@ -69,6 +65,10 @@ class TestSuiteTest(xunit.TestCase):
         suite.add(testcase2)
         result = suite.run()
         assert result.summary() == "2 run, 1 failed"
+    def testAddAllTestOfTestCase(self):
+        suite = xunit.TestSuite()
+        suite.addAllOf(TestCaseSample)
+        assert len(suite.tests) == 2
 
 suite = xunit.TestSuite()
 tests = [
@@ -79,7 +79,7 @@ tests = [
     TestSuiteTest("testHoldsTests"),
     TestSuiteTest("testRunsTests"),
     TestSuiteTest("testRunning"),
-    TestCaseTest("testDynamicTestExecution"),
+    TestSuiteTest("testAddAllTestOfTestCase"),
 ]
 for test in tests:
     suite.add(test)
