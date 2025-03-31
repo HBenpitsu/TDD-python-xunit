@@ -7,4 +7,4 @@ class TestCaseTest(xunit.TestCase):
         test.run()
         assert test.wasRun == True
 
-TestCaseTest().run()
+TestCaseTest("testRunning").run()
