@@ -6,5 +6,10 @@ class TestCaseTest(xunit.TestCase):
         assert test.wasRun == False
         test.run()
         assert test.wasRun == True
+    def testWasSetUp(self):
+        test = xunit.TestCase("testMethod")
+        test.run()
+        assert test.wasSetUp == True
 
 TestCaseTest("testRunning").run()
+TestCaseTest("testWasSetUp").run()
