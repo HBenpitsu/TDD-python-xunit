@@ -1,3 +1,5 @@
+from abc import abstractmethod
+
 class TestResult:
     def __init__(self):
         self.runCount = 0
@@ -9,20 +11,10 @@ class TestResult:
     def summary(self):
         return f"{self.runCount} run, {self.failureCount} failed"
 
-class TestSuite:
-    def __init__(self):
-        self.tests: list[TestSuite] = []
-    def add(self, test):
-        self.tests.append(test)
-    def run(self, result=None):
-        testsResult = TestResult() if result is None else result
-        for test in self.tests:
-            test.run(testsResult)
-        return testsResult
-            
-class TestCase(TestSuite):
+class TestCase:
     def __init__(self, name):
         self.name = name
+    @abstractmethod
     def setUp(self):
         pass
     def run(self, result=None):
@@ -36,5 +28,23 @@ class TestCase(TestSuite):
             result.testFailed()
         self.tearDown()
         return result
+    @abstractmethod
+    def tearDown(self):
+        pass
+
+class TestSuite(TestCase):
+    def __init__(self):
+        self.tests: list[TestSuite] = []
+    def add(self, test):
+        self.tests.append(test)
+    @abstractmethod
+    def setUp(self):
+        pass
+    def run(self, result=None):
+        testsResult = TestResult() if result is None else result
+        for test in self.tests:
+            test.run(testsResult)
+        return testsResult
+    @abstractmethod
     def tearDown(self):
         pass
