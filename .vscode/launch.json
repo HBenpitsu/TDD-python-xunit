@@ -12,10 +12,10 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "run xunit.py",
+            "name": "test",
             "type": "debugpy",
             "request": "launch",
-            "program": "xunit.py",
+            "program": "test.py",
             "console": "integratedTerminal"
         }
     ]
