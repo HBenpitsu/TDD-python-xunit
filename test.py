@@ -8,6 +8,7 @@ class TestCaseTest(xunit.TestCase):
         self.wasRunTest.run()
         assert self.wasRunTest.wasRun == True
     def testWasSetUp(self):
+        assert self.wasRunTest.wasSetUp == False
         self.wasRunTest.run()
         assert self.wasRunTest.wasSetUp == True
 
